@@ -7,3 +7,6 @@ You can specify which hosts use which boot configs by renaming the boot configur
 given MAC address), or by naming it "default".  When a client is pxebooted, it will search for the client's UUID, then "01-$MAC_ADDRESS", then a descending search on
 the hexidecimal uppercase ip address of the client, removing a single character and searching again for the next, until finally loading "default" if no hexidecimal
 characters remain of the ip address.  See: [syslinux pxelinux documentation](https://wiki.syslinux.org/wiki/index.php?title=PXELINUX#Configuration) for more details.
+
+The preseed files are not used directly via pxeboot, but instead are loaded via the kernel command line options passed to the vmlinuz kernels during the installation.
+These files can be stored anywhere in the tftp server, but I generally keep them in pxelinux.cfg/ with the client boot configurations.
