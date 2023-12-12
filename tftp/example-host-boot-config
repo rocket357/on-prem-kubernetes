@@ -1,3 +1,8 @@
+## name this file something like /path/to/tftp/pxelinux.cfg/01-$MAC, 
+## i.e. /path/to/tftp/pxelinux.cfg/01-00-16-3e-00-00-01 
+## and the host with that MAC will utilize this configuration file
+## Alternatively, set it to pxelinux.cfg/default in your tftp folder
+## for everyone to use that doesn't have a MAC file per above.
 path debian-installer/amd64/boot-screens/
 prompt 0
 timeout 0
