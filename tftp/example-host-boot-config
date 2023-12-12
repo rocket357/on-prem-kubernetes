@@ -1,0 +1,19 @@
+path debian-installer/amd64/boot-screens/
+prompt 0
+timeout 0
+default debian-installer/amd64/boot-screens/vesamenu.c32
+
+label bootlocal
+        menu label ^Boot local disk
+        timeout 200
+        menu default
+        localboot -1
+label isoinstall
+        menu label ^mini.iso Debian Manual Install
+        kernel memdisk
+        initrd images/debian-mini.iso
+        append iso
+label autodark-xen
+        menu label ^xen host Automated install
+        kernel debian-installer/amd64/linux
+        append auto=true preseed/url=tftp://$TFTP_IP/pxelinux.cfg/xen-preseed.cfg priority=critical vga=788 initrd=debian-installer/amd64/initrd.gz --- quiet
