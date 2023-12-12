@@ -22,3 +22,7 @@ label autodark-xen
         menu label ^xen host Automated install
         kernel debian-installer/amd64/linux
         append auto=true preseed/url=tftp://$TFTP_IP/pxelinux.cfg/xen-preseed.cfg priority=critical vga=788 initrd=debian-installer/amd64/initrd.gz --- quiet
+label autodark-k8s
+        menu label ^k8s domU Automated install
+        kernel debian-installer/amd64/linux
+        append auto=true preseed/url=tftp://$TFTP_IP/pxelinux.cfg/k8s-domU-preseed.cfg priority=critical vga=788 initrd=debian-installer/amd64/initrd.gz --- quiet
