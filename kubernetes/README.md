@@ -1,0 +1,1 @@
+This directory will contain the kubernetes yaml configurations and helm values files.  These should be double-checked to ensure they match your environment before they are kubectl apply'd or helm install'd.
