@@ -2,6 +2,7 @@
 taken from: https://github.com/kadalu/kadalu
 # first download the chart and set the default env
 K8S_DIST=kubernetes
+
 curl -sL https://github.com/kadalu/kadalu/releases/latest/download/kadalu-helm-chart.tgz -o /tmp/kadalu-helm-chart.tgz
 
 # next install operator
