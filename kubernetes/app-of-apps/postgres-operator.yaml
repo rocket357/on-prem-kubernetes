@@ -21,7 +21,7 @@ spec:
       helm:
         valueFiles:
           - $values/postgres-operator/postgres-operator-values.yaml
-    - repoURL: 'ssh://git@ha.$MYTLD:2222/on-prem-kubernetes/argocd.git'
+    - repoURL: 'ssh://git@gitea.$MYTLD:2222/on-prem-kubernetes/argocd.git'
       targetRevision: HEAD
       ref: values
   project: k8s.$MYTLD
