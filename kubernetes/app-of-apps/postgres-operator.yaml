@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres-operator
+  namespace: argocd
+spec:
+  ignoreDifferences:
+  - group: "*"
+    kind: OperatorConfiguration
+    jsonPointers:
+    - /configuration/kubernetes/persistent_volume_claim_retention_policy
+  destination:
+    name: ''
+    namespace: postgres-operator
+    server: 'https://kubernetes.default.svc'
+  sources:
+    - repoURL: >-
+        https://opensource.zalando.com/postgres-operator/charts/postgres-operator
+      targetRevision: 1.10.1
+      chart: postgres-operator
+      helm:
+        valueFiles:
+          - $values/postgres-operator/postgres-operator-values.yaml
+    - repoURL: 'ssh://git@ha.$MYTLD:2222/on-prem-kubernetes/argocd.git'
+      targetRevision: HEAD
+      ref: values
+  project: k8s.$MYTLD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
