@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gotify
+  namespace: argocd
+spec:
+  destination:
+    name: ''
+    namespace: gotify
+    server: 'https://kubernetes.default.svc'
+  sources:
+    - repoURL: >-
+        https://rubxkube.github.io/charts/
+      targetRevision: 1.1.5
+      chart: gotify
+      helm:
+        valueFiles:
+          - $values/gotify/gotify-values.yaml
+    - repoURL: 'ssh://git@gitea.$MYTLD:2222/on-prem-kubernetes/argocd.git'
+      targetRevision: HEAD
+      ref: values
+  project: k8s.$MYTLD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
